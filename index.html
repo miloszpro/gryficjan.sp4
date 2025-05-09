@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grycjan SP4</title>
+</head>
+<body>
+  <h1>Wyszukiwarka Grycjan SP4</h1>
+  <input type="text" id="query" placeholder="Wpisz zapytanie..." />
+  <button onclick="search()">Szukaj</button>
+  <p id="result"></p>
+
+  <script>
+    async function search() {
+      const query = document.getElementById("query").value;
+      const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      document.getElementById("result").innerText = data.answer;
+    }
+  </script>
+</body>
+</html>
